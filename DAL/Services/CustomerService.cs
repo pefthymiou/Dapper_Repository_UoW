@@ -46,5 +46,19 @@ namespace DAL.Services
       };
       await _customerRepository.AddCustomerAsync(customer1);
     }
+
+    public async Task UpdateCustomerAsync(Customer customer)
+    {
+      Customer customer1 = new Customer()
+      {
+        CustomerId = customer.CustomerId,
+        Address = customer.Address,
+        City = customer.City,
+        PostalCode = customer.PostalCode,
+        Telephone = customer.Telephone
+      };
+
+      await _customerRepository.UpdateCustomerAsync(customer1);
+    }
   }
 }

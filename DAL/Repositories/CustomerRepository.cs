@@ -41,7 +41,23 @@ namespace DAL.Repositories
                         (CustomerId, Firstname, Lastname, Email, Password, Address, City, PostalCode, Telephone)
                         VALUES(@CustomerId ,@Firstname, @Lastname, @Email, @Password, @Address, @City, @PostalCode, @Telephone)";
 
-      await _connection.ExecuteAsync(query, param: customer, transaction: _transaction, commandType:CommandType.Text);
+      await _connection.ExecuteAsync(query, param: customer, transaction: _transaction, commandType: CommandType.Text);
+
+      _dbContext.Commit();
+    }
+
+    public async Task UpdateCustomerAsync(Customer customer)
+    {
+      string query = @"UPDATE Customers SET Address=@Address, City=@City, PostalCode=@PostalCode, Telephone=@Telephone WHERE CustomerId=@CustomerId";
+
+      DynamicParameters parameters = new DynamicParameters();
+      parameters.Add("@CustomerId", customer.CustomerId);
+      parameters.Add("@Address", customer.Address);
+      parameters.Add("@City", customer.City);
+      parameters.Add("@PostalCode", customer.PostalCode);
+      parameters.Add("@Telephone", customer.Telephone);
+
+      await _connection.ExecuteAsync(query, param: parameters, transaction: _transaction, commandType: CommandType.Text);
 
       _dbContext.Commit();
     }

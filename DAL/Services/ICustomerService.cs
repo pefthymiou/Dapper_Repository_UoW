@@ -11,5 +11,6 @@ namespace DAL.Services
     Task<IEnumerable<Customer>> GetAllCustomersAsync();
     Task<Customer> GetCustomerAsync(Guid customerId);
     Task AddCustomerAsync(Customer customer);
+    Task UpdateCustomerAsync(Customer customer);
   }
 }

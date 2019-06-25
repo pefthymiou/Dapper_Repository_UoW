@@ -38,5 +38,11 @@ namespace TestAPI.Controllers
     {
       await _customerService.AddCustomerAsync(customer);
     }
+
+    [HttpPut]
+    public async Task UpdateCustomer([FromBody]Customer customer)
+    {
+      await _customerService.UpdateCustomerAsync(customer);
+    }
   }
 }
