@@ -48,6 +48,13 @@ namespace TestAPI
 
       services.AddScoped<ICustomerRepository, CustomerRepository>();
       services.AddScoped<ICustomerService, CustomerService>();
+      services.AddScoped<IOrderService, OrderService>();
+      services.AddScoped<IOrderRepository, OrderRepository>();
+
+      services.AddSwaggerGen(s =>
+      {
+        s.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "TestAPI", Version = "v1" });
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,6 +72,12 @@ namespace TestAPI
 
       app.UseHttpsRedirection();
       app.UseMvc();
+
+      app.UseSwagger();
+      app.UseSwaggerUI(a =>
+      {
+        a.SwaggerEndpoint("/swagger/v1/swagger.json", "TestAPI");
+      });
     }
   }
 }

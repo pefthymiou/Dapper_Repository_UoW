@@ -34,12 +34,14 @@ namespace TestAPI.Controllers
     }
 
     [HttpPost]
+    [Route("AddCustomer")]
     public async Task AddCustomer([FromBody]Customer customer)
     {
       await _customerService.AddCustomerAsync(customer);
     }
 
     [HttpPut]
+    [Route("UpdateCustomer")]
     public async Task UpdateCustomer([FromBody]Customer customer)
     {
       await _customerService.UpdateCustomerAsync(customer);

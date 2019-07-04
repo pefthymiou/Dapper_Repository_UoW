@@ -19,5 +19,7 @@ namespace DAL.Entities
     public string City { get; set; }
     public string PostalCode { get; set; }
     public string Telephone { get; set; }
+
+    public List<Order> Orders { get; set; }
   }
 }
